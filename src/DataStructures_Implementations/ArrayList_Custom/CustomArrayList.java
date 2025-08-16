@@ -23,7 +23,7 @@ public class CustomArrayList<T> implements ArrayList_CustomInterface<T> {
 
     // Doubles capacity when full
     private void resize() {
-        Object[] temp = new Object[data.length * 2];
+        Object[] temp = new Object[data.length + data.length/2 + 1 ];
         for (int i = 0; i < data.length; i++) {
             temp[i] = data[i];
         }
