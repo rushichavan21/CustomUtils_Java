@@ -1,7 +1,5 @@
 package DataStructures_Implementations.LinkedList_Custom;
 
-import java.util.LinkedList;
-
 public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
     private Node head;
     private int size;
@@ -13,7 +11,7 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
     }
 
     // Node inner class
-    private class Node {
+    private  class Node {
         T data;
         Node next;
 
@@ -23,7 +21,7 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         }
     }
 
-    // Add element at the start
+    // Add element at the start of the LL
     @Override
     public void addAtStart(T data) {
         Node newNode = new Node(data);
@@ -32,7 +30,7 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         size++;
     }
 
-    // Add element at the end
+    // Add element at the end of the LL
     @Override
     public void addAtEnd(T data) {
         Node newNode = new Node(data);
@@ -48,7 +46,7 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         size++;
     }
 
-    // Remove first element
+    // Removes the  first element of the LL
     @Override
     public void removeFirst() {
         if (head == null) {
@@ -59,18 +57,18 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         size--;
     }
 
-    // Remove last element
+    // Remove last element of the LL
     @Override
     public void removeLast() {
         if (head == null) {
             System.out.println("Empty List, nothing to delete");
             return;
         }
-        if (head.next == null) { // only 1 node
+        if (head.next == null) {
             head = null;
         } else {
             Node temp = head;
-            while (temp.next.next != null) { // stop at second-last node
+            while (temp.next.next != null) {
                 temp = temp.next;
             }
             temp.next = null;

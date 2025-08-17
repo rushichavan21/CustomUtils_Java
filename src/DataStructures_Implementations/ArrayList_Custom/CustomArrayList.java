@@ -1,5 +1,4 @@
 package DataStructures_Implementations.ArrayList_Custom;
-
 import java.util.Arrays;
 
 public class CustomArrayList<T> implements ArrayList_CustomInterface<T> {
@@ -13,6 +12,7 @@ public class CustomArrayList<T> implements ArrayList_CustomInterface<T> {
     }
 
     // Adds the value to the CustomArrayList
+    // Amortized Time Complexity of O(1)
     @Override
     public void add(T value) {
         if (isFull()) {
@@ -97,29 +97,4 @@ public class CustomArrayList<T> implements ArrayList_CustomInterface<T> {
     @Override
     public String toString() { return "CustomArrayList{" + "data"+ Arrays.toString(data) + ", size=" +size+" } "; }
 
-    // ---------- Testing ----------
-    public static void main(String[] args) {
-        CustomArrayList<Integer> list = new CustomArrayList<>();
-        list.add(10);
-        list.add(20);
-        list.add(30);
-        System.out.println("List: " + list); // [10, 20, 30]
-
-        System.out.println("Contains 20? " + list.contains(20)); // true
-        System.out.println("Contains 99? " + list.contains(99)); // false
-
-        list.set(1, 200);
-        System.out.println("After set: " + list); // [10, 200, 30]
-
-        list.remove();
-        System.out.println("After remove: " + list); // [10, 200]
-
-        list.ensureCapacity(50);
-        System.out.println("Capacity increased (not directly visible)");
-
-        list.clear();
-        System.out.println("After clear: " + list); // []
-
-
-    }
 }
