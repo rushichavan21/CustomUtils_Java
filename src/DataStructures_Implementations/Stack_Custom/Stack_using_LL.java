@@ -1,12 +1,27 @@
 package DataStructures_Implementations.Stack_Custom;
 
+/**
+ * Custom Stack implementation using a singly linked list.
+ *
+ * <p>This stack supports typical stack operations:
+ * push, pop, top, size, clear, contains, and toString.
+ *
+ * @param <T> the type of elements stored in the stack
+ */
 public class Stack_using_LL<T> implements Stack_CustomInterface<T> {
+
+    /** Pointer to the top element of the stack */
     private Node<T> head;
+
+    /** Number of elements in the stack */
     private int size;
 
+    /**
+     * Inner class representing a node in the linked list.
+     */
     private static class Node<T> {
         private final T val;
-        Node<T> next;
+        private Node<T> next;
 
         public Node(T val) {
             this.val = val;
@@ -22,13 +37,22 @@ public class Stack_using_LL<T> implements Stack_CustomInterface<T> {
             return this.val;
         }
     }
-    // Returns the Element at the top of the stack
+
+    /**
+     * Retrieves the element at the top of the stack without removing it.
+     *
+     * @return the top element, or {@code null} if the stack is empty
+     */
     @Override
     public T top() {
-        if (head != null) return head.val;
-        return null;
+        return (head != null) ? head.val : null;
     }
-    // Adds an element to the stack
+
+    /**
+     * Pushes a new element onto the top of the stack.
+     *
+     * @param value the element to be added
+     */
     @Override
     public void push(T value) {
         Node<T> newNode = new Node<>(value);
@@ -36,7 +60,12 @@ public class Stack_using_LL<T> implements Stack_CustomInterface<T> {
         head = newNode;
         size++;
     }
-    // Removes the element from the top of the stack
+
+    /**
+     * Removes and returns the element at the top of the stack.
+     *
+     * @return the removed element, or {@code null} if the stack is empty
+     */
     @Override
     public T pop() {
         if (head == null) return null;
@@ -45,23 +74,42 @@ public class Stack_using_LL<T> implements Stack_CustomInterface<T> {
         size--;
         return temp;
     }
-    // Checks if the Stack is empty
+
+    /**
+     * Checks whether the stack is empty.
+     *
+     * @return {@code true} if the stack has no elements, otherwise {@code false}
+     */
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
-    //Returns the size of the Stack
+
+    /**
+     * Returns the number of elements in the stack.
+     *
+     * @return the size of the stack
+     */
     @Override
     public int size() {
         return this.size;
     }
-    // Clears the Stack
+
+    /**
+     * Removes all elements from the stack.
+     */
     @Override
     public void clear() {
         head = null;
         size = 0;
     }
-    // Checks the presence of the given value in the stack
+
+    /**
+     * Checks if the stack contains a given value.
+     *
+     * @param value the element to search for
+     * @return {@code true} if the element exists in the stack, otherwise {@code false}
+     */
     @Override
     public boolean contains(T value) {
         Node<T> temp = head;
@@ -72,16 +120,21 @@ public class Stack_using_LL<T> implements Stack_CustomInterface<T> {
         return false;
     }
 
-
+    /**
+     * Returns a string representation of the stack.
+     * The top of the stack is displayed on the left.
+     *
+     * @return string representation of the stack
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("[");
+        sb.append("Top -> [");
 
         Node<T> temp = head;
         while (temp != null) {
             sb.append(temp.val);
-            if (temp.next != null) sb.append(", ");
+            if (temp.next != null) sb.append(" -> ");
             temp = temp.next;
         }
 
