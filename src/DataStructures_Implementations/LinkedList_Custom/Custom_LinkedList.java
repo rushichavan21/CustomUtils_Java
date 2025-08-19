@@ -1,17 +1,32 @@
 package DataStructures_Implementations.LinkedList_Custom;
 
+/**
+ * A custom implementation of a singly linked list.
+ * This list supports basic operations such as adding elements
+ * at the start or end, removing elements, searching, and clearing.
+ *
+ * @param <T> the type of elements stored in the list
+ */
 public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
+
+    /** Head node of the linked list */
     private Node head;
+
+    /** Number of elements in the list */
     private int size;
 
-    // Constructor
+    /**
+     * Constructs an empty linked list.
+     */
     public Custom_LinkedList() {
         this.head = null;
         this.size = 0;
     }
 
-    // Node inner class
-    private  class Node {
+    /**
+     * Inner Node class representing a single element in the list.
+     */
+    private class Node {
         T data;
         Node next;
 
@@ -21,7 +36,11 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         }
     }
 
-    // Add element at the start of the LL
+    /**
+     * Adds a new element at the start of the linked list.
+     *
+     * @param data element to be added
+     */
     @Override
     public void addAtStart(T data) {
         Node newNode = new Node(data);
@@ -30,15 +49,19 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         size++;
     }
 
-    // Add element at the end of the LL
+    /**
+     * Adds a new element at the end of the linked list.
+     *
+     * @param data element to be added
+     */
     @Override
     public void addAtEnd(T data) {
         Node newNode = new Node(data);
         if (head == null) {
-            head = newNode;
+            head = newNode; // first element
         } else {
             Node temp = head;
-            while (temp.next != null) {
+            while (temp.next != null) { // traverse till last node
                 temp = temp.next;
             }
             temp.next = newNode;
@@ -46,7 +69,9 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         size++;
     }
 
-    // Removes the  first element of the LL
+    /**
+     * Removes the first element of the list.
+     */
     @Override
     public void removeFirst() {
         if (head == null) {
@@ -57,7 +82,9 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         size--;
     }
 
-    // Remove last element of the LL
+    /**
+     * Removes the last element of the list.
+     */
     @Override
     public void removeLast() {
         if (head == null) {
@@ -65,10 +92,10 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
             return;
         }
         if (head.next == null) {
-            head = null;
+            head = null; // only one element
         } else {
             Node temp = head;
-            while (temp.next.next != null) {
+            while (temp.next.next != null) { // stop at 2nd last node
                 temp = temp.next;
             }
             temp.next = null;
@@ -76,20 +103,31 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         size--;
     }
 
-    // Get element at given index (0-based)
+    /**
+     * Retrieves the element at a given index (0-based).
+     *
+     * @param index the position of the element
+     * @return the element at the given index
+     * @throws IndexOutOfBoundsException if index is invalid
+     */
     @Override
     public T get(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index out of range");
+            throw new IndexOutOfBoundsException("Index out of range: " + index);
         }
         Node temp = head;
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < index; i++) { // move to index
             temp = temp.next;
         }
         return temp.data;
     }
 
-    // Search for an element
+    /**
+     * Searches for an element in the list.
+     *
+     * @param data element to search for
+     * @return true if element exists, false otherwise
+     */
     @Override
     public boolean search(T data) {
         Node temp = head;
@@ -103,14 +141,18 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         return false;
     }
 
-    // Clear the list
+    /**
+     * Clears the linked list (removes all elements).
+     */
     @Override
     public void clear() {
         head = null;
         size = 0;
     }
 
-    // Print all elements
+    /**
+     * Prints all elements in the list.
+     */
     @Override
     public void printList() {
         if (head == null) {
@@ -119,19 +161,27 @@ public class Custom_LinkedList<T> implements LinkedList_CustomInterface<T> {
         }
         Node temp = head;
         while (temp != null) {
-            System.out.print(temp.data + " ");
+            System.out.print(temp.data + " -> ");
             temp = temp.next;
         }
-        System.out.println();
+        System.out.println("null");
     }
 
-    // Get size of list
+    /**
+     * Returns the number of elements in the list.
+     *
+     * @return list size
+     */
     @Override
     public int getSize() {
         return size;
     }
 
-    // Check if list is empty
+    /**
+     * Checks if the list is empty.
+     *
+     * @return true if list is empty, false otherwise
+     */
     @Override
     public boolean isEmpty() {
         return head == null;
